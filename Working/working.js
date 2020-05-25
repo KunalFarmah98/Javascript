@@ -77,10 +77,11 @@ function third() {
 /////////////////////////////////////
 // Lecture: The this keyword
 
-
+// this initially points to global (window) object
 console.log(this);
 calculateAge(1985);
 function calculateAge(year) {
+    // even in a regular function, this point to global object
     console.log(2016 - year);
     console.log(this);
 }
@@ -88,10 +89,12 @@ var john = {
     name: 'John',
     yearOfBirth: 1990,
     calculateAge: function() {
+        // now we are in a method and this will point to john (calling object) here
         console.log(this);
         console.log(2016 - this.yearOfBirth);
         
         function innerFunction() {
+            // even inside a method, it is a regular function and this will point to global object again
             console.log(this);
         }
         innerFunction();
@@ -102,5 +105,9 @@ var mike = {
     name: 'Mike',
     yearOfBirth: 1984
 };
+// method borrowing
 mike.calculateAge = john.calculateAge;
+// here this will point to mike even when method is of john because this is only
+// created with mike calls its calcAge which is taken from john but it belongs to mike now
+// for this current call
 mike.calculateAge();
