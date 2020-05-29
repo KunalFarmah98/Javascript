@@ -56,13 +56,16 @@ console.log(jb.lastname);
 
 
 
+
+
+
+
+// Object.create(prototype,object specifying values to be populated)
 var Person_proto = {
     calcAge : function(){
         console.log(2020-this.yob);
     }
 }
-
-// Object.create(prototype,object specifying values to be populated)
 
 var jane = Object.create(Person_proto,
     {
@@ -74,6 +77,8 @@ var jane = Object.create(Person_proto,
 
 
 
+
+// hiding everything we used, invoke only once
 /* IIFE */
 
 (function() {
@@ -84,6 +89,10 @@ var jane = Object.create(Person_proto,
 (function(arg){
     console.log(arg);
 })(2020);
+
+
+
+
 
 
 /* Closures */
@@ -105,6 +114,9 @@ retirement(65)(30);
 
 
 
+
+
+// function borrrowing
 /* Bind, Call, Apply*/
 
 var john = {
@@ -123,7 +135,7 @@ var emily = {
 
 john.display('Morning',' Yo Boi');
 
-// call and apply can modify this and make another object borrow another object's mehtod
+// call and apply can modify 'this' and make another object borrow another object's mehtod
 // call takes actual format
 john.display.call(emily,'Morning', '!! Yoouhoo');
 // apply takes arguments as a list, even if methods doesn't accept a list
@@ -132,7 +144,7 @@ john.display.apply(emily,['Evenening','!! Yoouhoo']);
 // bind helps in presetting some parameters and returns a copy of the method
 
 var afternoonGreet = john.display.bind(emily,'Afternoon'); // presetting Afternoon as timeofday
-afternoonGreet('!!Woah');
+afternoonGreet('!! Woah');
 
 
 
