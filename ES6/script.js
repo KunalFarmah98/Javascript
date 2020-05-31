@@ -79,3 +79,53 @@ ages = yrs.map((el,ind)=>{
 });
 
 console.log(ages); 
+
+
+/* Arrow fucntion has its own this keyword, similar to method call that points to the caller */
+
+const box = {
+    color: 'green',
+    pos :1,
+    clickme: function(){
+        document.querySelector('.green')
+        .addEventListener('click',()=>{
+            // using this.pos and this.color in a normal function would not work
+            var str  = `This is a box number ${this.pos} and it is ${this.color}`;
+            alert(str);
+        })
+    }
+}
+
+box.clickme();
+
+
+function Person(name) {
+    this.name =name;
+}
+
+Person.prototype.friend = function(friends){
+    var arr = friends.map(el=> `${this.name} is friends with ${el}`);
+    console.log(arr);
+}
+
+var friends = ['Jhasa','Re','Loba'];
+new Person('John').friend(friends);
+
+
+
+/* Destructuring */
+
+
+const [names,age]  = ['john',26];
+console.log(names);
+console.log(age);
+
+const obj ={
+    fn: 'John',
+    ln: 'Smith'
+};
+
+const {fn,ln}=obj;
+console.log(fn);
+console.log(ln);
+
